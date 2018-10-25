@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+    {{message}}
+</div>
+
+<div id="app1">
+    <span :title="message">
+        悬停~
+    </span>
+</div>
+
+<div id="app2">
+    <span v-if="see">
+        看~
+    </span>
+</div>
+
+<div id="app3">
+    <span v-for="todo in todos">
+        {{todo.text}}
+    </span>
+</div>
+
+<div id="app4">
+    <span>{{message}}</span>
+    <input type="button" @click="reverse" value="反转"/>
+</div>
+
+
+<div id="app5">
+    <span>{{message}}</span>
+    <input v-model="message" />
+</div>
+
+</body>
+
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: 'Hell Vue!'
+        }
+    })
+
+    var app1 = new Vue({
+        el: '#app1',
+        data: {
+            message: '页面加载于' + new Date().toLocaleString()
+        }
+    })
+
+    var app2 = new Vue({
+        el: '#app2',
+        data: {
+            see: false
+        }
+    })
+
+    var app3 = new Vue({
+        el: '#app3',
+        data: {
+            todos:[
+                {text: 1},
+                {text: 2},
+                {text: 3},
+                {text: 4},
+            ]
+        }
+    })
+
+    var app4 = new Vue({
+        el: '#app4',
+        data :{
+            message:'Hello Vue'
+        },
+        methods: {
+            reverse: function(){
+                this.message = this.message.split('').reverse().join('');
+            }
+        }
+    })
+
+    var app5 = new Vue({
+        el: '#app5',
+        data:{
+            message : 'Hello Vue'
+        }
+    })
+</script>
+
+</html>
