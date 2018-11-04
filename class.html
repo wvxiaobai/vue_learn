@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Class与Style绑定</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+    <div class="static" :class="{ active: isActive, 'text-danger':hasError }">
+        app
+    </div>
+    <div class="static" :class="classObject">
+        app1
+    </div>
+    <div class="static" :class="classObject1">
+        app2
+    </div>
+</div>
+
+</body>
+
+<script>
+    var vue = new Vue({
+        el: '#app',
+        data:{
+            isActive: true,
+            hasError: true,
+            classObject:{
+                isActive: true,
+                hasError: false
+            }
+        },
+        computed: {
+            classObject1: function () {
+                return {
+                    active: this.active && !this.hasError,
+                    'text-danger': this.active && this.hasError.type === 'fatal'
+                }
+            }
+        }
+    })
+</script>
+
+</html>
