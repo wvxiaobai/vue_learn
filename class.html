@@ -17,19 +17,51 @@
     <div class="static" :class="classObject1">
         app2
     </div>
+    <div :class="[activeClass,errorClass]">
+        app3
+    </div>
+    <my-component class="vaz ada"></my-component>
+    <my-component :class="{active: isActive}"></my-component>
+
+    <div :style="{ color: activeColor, 'fontSize':fontSize+ 'px' }">
+        style
+    </div>
+    <div :style="styleObject">
+        style1
+    </div>
+    <div :style="[styleObject, overridingStyles]">
+        style2
+    </div>
+    <div :style="{ display: ['-webkit-box', '-ms-flexbox', 'flex']}">
+        style3
+    </div>
 </div>
 
 </body>
 
 <script>
+
+    Vue.component('my-component',{
+        template: '<p class="for bar">Hi</p>'
+    })
+
     var vue = new Vue({
         el: '#app',
         data:{
             isActive: true,
             hasError: true,
+            activeClass: 'active',
+            errorClass: 'text-danger',
             classObject:{
                 isActive: true,
                 hasError: false
+            },
+            activeColor: 'red',
+            fontSize: 50,
+            styleObject:{
+                color: 'blue',
+                fontSize: '40px',
+                transform: 'rotate(7deg)'
             }
         },
         computed: {
@@ -40,7 +72,8 @@
                 }
             }
         }
-    })
+    });
+
 </script>
 
 </html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>条件渲染</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+    <div v-if="type === 'A'">
+        A
+    </div>
+    <div v-else-if="type === 'B'">
+        B
+    </div>
+    <div v-else-if="type === 'C'">
+        C
+    </div>
+    <div v-else>
+        D
+    </div>
+
+    <template v-if="loginType === 'username'">
+        <label>Username</label>
+        <input placeholder="Enter username">
+    </template>
+    <template v-else>
+        <label>Email</label>
+        <input placeholder="Enter Email">
+    </template>
+    <button @click="changeToggle">changeToggle</button>
+</div>
+
+</body>
+
+<script>
+    var vue = new Vue({
+        el: "#app",
+        data:{
+            type: 'C',
+            loginType:'email'
+        },
+        methods:{
+            changeToggle :function () {
+                this.loginType = (this.loginType === 'username')?'email':'username'
+            }
+
+        }
+    });
+
+</script>
+
+</html>
