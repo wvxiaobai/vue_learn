@@ -8,8 +8,14 @@
 <body>
 
 <ul id="app">
-    <li v-for=" ( item,index) in items ">
+    <li v-for=" ( item,index) in items " :key="item.id">
         {{parentMessage}}-{{ index }}-{{ item.message }}
+    </li>
+</ul>
+
+<ul id="app1">
+    <li v-for=" ( value, key, index) in object ">
+        {{key}}-{{ index }}-{{ value }}
     </li>
 </ul>
 
@@ -24,11 +30,22 @@
                 {'message':'a'},
                 {'message':'b'},
                 {'message':'c'}
-            ]
+            ],
         },
 
     });
 
+    var vue1 = new Vue({
+        el: "#app1",
+        data:{
+            object:{
+                'd':'a',
+                'e':'b',
+                'f':'c'
+            },
+        },
+
+    });
 </script>
 
 </html>
